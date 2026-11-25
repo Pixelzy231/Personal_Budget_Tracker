@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Personal Budget & Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Personal Budget Tracker</h1>
+            <span class="badge">Powered by C++ Heap & Pointers</span>
+        </header>
+
+        <!-- Summary Cards (Driven by const getTotalSpent & pass-by-reference income) -->
+        <section class="summary-grid">
+            <div class="card">
+                <p class="label">Monthly Income</p>
+                <h2 id="incomeDisplay">$0.00</h2>
+            </div>
+            <div class="card">
+                <p class="label">Total Spent</p>
+                <h2 id="spentDisplay" class="danger">$0.00</h2>
+            </div>
+            <div class="card">
+                <p class="label">Remaining Balance</p>
+                <h2 id="balanceDisplay" class="success">$0.00</h2>
+            </div>
+        </section>
+
+        <!-- Action Forms -->
+        <section class="controls-grid">
+            <!-- Update Income -->
+            <div class="card">
+                <h3>Set Monthly Income</h3>
+                <form id="incomeForm">
+                    <input type="number" id="incomeInput" step="0.01" placeholder="e.g. 3500" required>
+                    <button type="submit">Update Income</button>
+                </form>
+            </div>
+
+            <!-- Add Expense (Dynamic Heap Resize) -->
+            <div class="card">
+                <h3>Add New Expense</h3>
+                <form id="addForm">
+                    <input type="text" id="expenseName" placeholder="Expense name (e.g. Rent)" required>
+                    <input type="number" id="expenseAmount" step="0.01" placeholder="Amount (e.g. 1200)" required>
+                    <button type="submit">Add to Heap</button>
+                </form>
+            </div>
+
+            <!-- Find & Edit Expense (Pointer Search) -->
+            <div class="card">
+                <h3>Find & Edit Expense</h3>
+                <form id="editForm">
+                    <input type="text" id="editName" placeholder="Exact expense name" required>
+                    <input type="number" id="editAmount" step="0.01" placeholder="New amount" required>
+                    <button type="submit" class="secondary">Update via Pointer</button>
+                </form>
+                <p id="editStatus" class="status-msg"></p>
+            </div>
+
+            <!-- Recursive Savings Projector -->
+            <div class="card">
+                <h3>Savings Growth Projector</h3>
+                <form id="projectForm">
+                    <input type="number" id="projBalance" step="0.01" placeholder="Starting savings ($)" required>
+                    <input type="number" id="projRate" step="0.1" placeholder="Monthly rate % (e.g. 2)" required>
+                    <input type="number" id="projMonths" placeholder="Months (e.g. 12)" required>
+                    <button type="submit" class="secondary">Project (Recursive)</button>
+                </form>
+                <p id="projectResult" class="highlight-msg"></p>
+            </div>
+        </section>
+
+        <!-- Expense List & Bubble Sort -->
+        <section class="card list-section">
+            <div class="list-header">
+                <h3>Tracked Expenses</h3>
+                <button id="sortBtn" class="sort-btn">Sort Highest &rarr; Lowest</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Expense Name</th>
+                        <th class="right">Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="expenseTableBody">
+                    <tr>
+                        <td colspan="2" class="empty">No expenses added yet.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
